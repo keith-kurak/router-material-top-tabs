@@ -1,32 +1,52 @@
-import { Tabs } from "expo-router";
 import React from "react";
-import { Platform } from "react-native";
 
-import { IconSymbol } from "@/components/ui/IconSymbol";
-import { Colors } from "@/constants/Colors";
+import {
+  BottomSheetBackdrop,
+  BottomSheetBackdropProps,
+} from "@gorhom/bottom-sheet";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+
 import { useColorScheme } from "@/hooks/useColorScheme";
 
-import { ParamListBase, TabNavigationState } from "@react-navigation/native";
 import {
-  createMaterialTopTabNavigator,
-  MaterialTopTabNavigationOptions,
-  MaterialTopTabNavigationEventMap,
-} from "@react-navigation/material-top-tabs";
+  createBottomSheetNavigator,
+  BottomSheetNavigationEventMap,
+  BottomSheetNavigationOptions,
+} from "@th3rdwave/react-navigation-bottom-sheet";
+
+import { ParamListBase, TabNavigationState } from "@react-navigation/native";
 import { withLayoutContext } from "expo-router";
 
-const MaterialTopTabs = createMaterialTopTabNavigator();
+const BottomSheet = createBottomSheetNavigator();
 
-const ExpoRouterMaterialTopTabs = withLayoutContext<
-  MaterialTopTabNavigationOptions,
-  typeof MaterialTopTabs.Navigator,
+const renderBackdrop = (props: BottomSheetBackdropProps) => (
+  <BottomSheetBackdrop {...props} appearsOnIndex={0} disappearsOnIndex={-1} />
+);
+
+const ExpoRouterGorhamBottomSheet = withLayoutContext<
+  BottomSheetNavigationOptions,
+  typeof BottomSheet.Navigator,
   TabNavigationState<ParamListBase>,
-  MaterialTopTabNavigationEventMap
->(MaterialTopTabs.Navigator);
+  BottomSheetNavigationEventMap
+>(BottomSheet.Navigator);
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
 
   return (
-    <ExpoRouterMaterialTopTabs style={{ marginTop: 50 }} />
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <ExpoRouterGorhamBottomSheet
+        screenOptions={{
+          backdropComponent: renderBackdrop,
+        }}
+        style={{ marginTop: 50 }}
+      >
+        <ExpoRouterGorhamBottomSheet.Screen name="index" />
+        <ExpoRouterGorhamBottomSheet.Screen
+          name="second"
+          getId={({ params }) => `sheet-${params.id}`}
+        />
+      </ExpoRouterGorhamBottomSheet>
+    </GestureHandlerRootView>
   );
 }

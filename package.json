@@ -16,9 +16,11 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^14.0.2",
+    "@gorhom/bottom-sheet": "^5.1.1",
     "@react-navigation/bottom-tabs": "^7.2.0",
     "@react-navigation/material-top-tabs": "^7.1.0",
     "@react-navigation/native": "^7.0.14",
+    "@th3rdwave/react-navigation-bottom-sheet": "^0.3.2",
     "expo": "~52.0.27",
     "expo-blur": "~14.0.2",
     "expo-constants": "~17.0.4",
