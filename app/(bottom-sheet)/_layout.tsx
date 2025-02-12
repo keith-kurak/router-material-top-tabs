@@ -38,13 +38,16 @@ export default function TabLayout() {
       <ExpoRouterGorhamBottomSheet
         screenOptions={{
           backdropComponent: renderBackdrop,
+          enableDynamicSizing: false,
         }}
         style={{ marginTop: 50 }}
       >
         <ExpoRouterGorhamBottomSheet.Screen name="index" />
         <ExpoRouterGorhamBottomSheet.Screen
           name="second"
-          getId={({ params }) => `sheet-${params.id}`}
+          options={{
+            snapPoints: ['50%', '80%'],
+          }}
         />
       </ExpoRouterGorhamBottomSheet>
     </GestureHandlerRootView>

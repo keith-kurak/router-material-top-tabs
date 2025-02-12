@@ -4,10 +4,12 @@ import { HelloWave } from "@/components/HelloWave";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
-import { useRouter, Link } from "expo-router";
+import { useRouter, Link, useNavigation } from "expo-router";
 
 export default function HomeScreen() {
   const router = useRouter();
+
+  const navigation = useNavigation();
 
   return (
     <ParallaxScrollView
@@ -19,8 +21,8 @@ export default function HomeScreen() {
         />
       }
     >
-      <Link href="/(tabs)/second">
-        <ThemedText>Open bottom sheet</ThemedText>
+      <Link href="/(bottom-sheet)/second" asChild>
+        <Button title="Open Bottom Sheet" />
       </Link>
       <ThemedView style={styles.titleContainer}>
         <ThemedText type="title">Welcome!</ThemedText>
