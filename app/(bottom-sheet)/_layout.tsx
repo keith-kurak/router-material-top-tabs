@@ -38,7 +38,8 @@ export default function TabLayout() {
       <ExpoRouterGorhamBottomSheet
         screenOptions={{
           backdropComponent: renderBackdrop,
-          enableDynamicSizing: false,
+          // add this back and it will work again
+          //enableDynamicSizing: false,
         }}
         style={{ marginTop: 50 }}
       >
